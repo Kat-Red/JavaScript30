@@ -38,28 +38,68 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const i1500 = inventors.filter((a)=>{
+        if (a.year < 1600 && a.year >=1500){
+          return true
+      
+      }
+    })
+
+    console.table(i1500)
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const lastName= inventors.map((i)=>{
+      return i.first + " " + i.last
+    })
+
+    console.log(lastName)
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const oToY = inventors.sort((a,b)=> a.year - b.year)
+    console.table(oToY)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const yea = inventors.reduce((t,p)=>{
+      return t + (p.passed - p.year);
+    },0)
 
-    // 5. Sort the inventors by years lived
+    console.log(yea)
+
+    // 5. Sort the inventors by years lived 
+    const old= inventors.sort((a,b)=> {return (b.passed-b.year)-(a.passed-a.year)})
+    console.table(old)
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+      // const list = document.querySelector(".mw-category");
+      // const a = Array.from(list.querySelectorAll("a"));
 
+      // const losDes = a.map(i => i.textContent).filter(t => t.includes("de"));
+      // console.log(losDes)
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+      const sorted = people.sort((a,b)=>{
+        const [last1,first1]= a.split(', ');
+        const [last2,first2]= b.split(', ');
+        return last1 > last2
+      })
+
+      console.log(sorted)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const dataItems = data.reduce((obj,i)=>{
+      if(!(i in obj))
+        obj[i]=0;
+      obj[i]++;
+      return obj
+    },{});
+    console.log(dataItems)
 
   </script>
 </body>
